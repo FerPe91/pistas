@@ -1,0 +1,39 @@
+*{
+    font-family: 'Acme', sans-serif;
+    font-family: 'Alkatra', cursive;
+}
+body{
+    background: #fffbd5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #b20a2c, #fffbd5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #b20a2c, #fffbd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+nav{
+    display: flex;
+    align-items: center;
+}
+
+img{
+    width: 200px;
+    height: 200px;
+
+}
+h1 {
+    text-align: center;
+    flex-grow: 1;
+}
+
+form{
+    display: flex;
+    padding: 10px;
+    border: solid 3px white;
+    border-radius: 15px;
+    width: fit-content;
+}
+
+
+.parrafos{
+    background-color: brown;
+}
+
+
