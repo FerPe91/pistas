@@ -9,30 +9,35 @@ antigüedad.
 C) lista de documentos de un tema determinado.  -D) título más moderno
 -E) título más antiguo  -F) tema mas tratado */
 
+
 btnAdd = document.getElementById('btnAdd')
 btnTopOne = document.getElementById('btnTopOne')
 let documentos=[]
-
+let id=1
 const addElements =()=>{
     let autor = document.getElementById('autor').value
     let tittle = document.getElementById('tittle').value
     let content = document.getElementById('content').value
     let year = document.getElementById('year').value
     
-    let register={
-        "autor":autor,
-        "pista":[{
+
+    let datos={
+        "id":id++,
+        "pista":[
+            {
+            "autor":autor,
             "tittle":tittle,
             "content":content,
-            "year":Number(year)
-        }]
+            "year":Number(year),
+            "totalCanciones":Number(0)
+            }
+        ]
     }
 
-    documentos.push(register)
+    console.log(datos);
+    documentos.push(datos)
     
 
-
-    
 
     console.log(documentos);
     showElements();
@@ -42,8 +47,11 @@ const addElements =()=>{
 const showElements =()=>{
     let fill = document.getElementById('info')
     let elements='';
+    documentos.id=+1
     for (let i of documentos){
-        elements+=`<span> AUTOR: ${i.autor}</span>
+        elements+=`
+        <span> ID: ${i.id}</span>
+        <span> AUTOR: ${i.pista[0].autor}</span>
         <span> TITTLE: ${i.pista[0].tittle}</span>
         <span> CONTENT: ${i.pista[0].content}</span>
         <span> AÑO:${i.pista[0].year}</span> </br>`
@@ -52,26 +60,57 @@ const showElements =()=>{
     
 }
 
- /* for(let i = 0; i<documentos.length; i ++){
-            if(documentos[pos].autor.pistas==documentos[i].autor.pistas){
-                count++
-            }
-        } */
+ 
 
 const showTop1=()=>{
     let consultaShowTop1 = document.getElementById('documentsMax')
-    max=0
-    maxAutor=''
-    for(let pos = 0; pos<documentos.length; pos ++){
-        if(documentos[pos].pista.length>max){
-            max=documentos[pos].pista.length
-            maxAutor=`${documentos[pos].autor} es el que mas publicaciones tiene, publico ${max} veces`
-        }    
+    let max=0
+    let count=0
+    let top1=""
+    let totalElementos=0
+    let totalPistas=[]
+    
+    
+    console.log("soy el lenght: ",documentos.length);
+
+    //console.log("asi se llega al autor: ", documentos[1].pista[0].autor)
+    for(let i=1 ; i<documentos.length;i++){
+        let autorAContar=documentos[i].pista[0].autor
+        documentos[i].pista[0].totalCanciones=+1
+        //console.log(i,  documentos[i].pista[0].autor)
+
+        for (let j of documentos){//comparo cada valor
+            if(autorAContar  == j.pista[0].autor){
+                count=count+1
+                documentos[i].pista[0].totalCanciones=count
+                totalPistas.push(documentos[i].pista[0].tittle)
+                
+            }
+            
+        }
+        
+        totalElementos=documentos[i].pista[0].totalCanciones
+        
+
+        console.log("De", autorAContar," hay: ",totalElementos );
+        
+        if(totalElementos>=max){
+            top1="El Autor con mas canciones es:" + documentos[i].pista[0].autor
+            max=totalElementos
+            console.log("soy la lista de pistas",totalPistas );
+        }
+        count=0
     }
-    console.log("Mostrar document");
-    console.log("longitud:", documentos[0].pista.length);
-    consultaShowTop1.innerHTML=`${maxAutor}`
+    console.log(top1);
+    console.log(documentos);
+    totalPistas=[]
+
 }
+
+
+
+
+
 
 const max1year =()=>{
     let olderOneYear= document.getElementById('olderOneYear')
@@ -79,10 +118,10 @@ const max1year =()=>{
     div='';
 
     for(let y of documentos){
-        let resultado=2023-y.pista.year
-        console.log(y.pista.year)
+        let resultado=2023-y.pista[0].year
+        console.log(y.pista[0].year)
         if(resultado>1){
-            div+=`<p class="parrafos">El titulo ${y.pista.tittle} del Autor ${y.autor}, cuenta con mas de un año de antiguedad ${resultado} años</p>`
+            div+=`<p class="parrafos">El titulo ${y.pista[0].tittle} del Autor ${y.pista[0].autor}, cuenta con mas de un año de antiguedad ${resultado} años</p>`
         }
     }
     olderOneYear.innerHTML=div
