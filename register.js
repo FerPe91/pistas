@@ -14,6 +14,8 @@ btnAdd = document.getElementById('btnAdd')
 btnTopOne = document.getElementById('btnTopOne')
 let documentos=[]
 let id=1
+
+
 const addElements =()=>{
     let autor = document.getElementById('autor').value
     let tittle = document.getElementById('tittle').value
@@ -33,13 +35,7 @@ const addElements =()=>{
             }
         ]
     }
-
-    console.log(datos);
     documentos.push(datos)
-    
-
-
-    console.log(documentos);
     showElements();
 }
 
@@ -69,12 +65,10 @@ const showTop1=()=>{
     let top1=""
     let totalElementos=0
     let totalPistas=[]
+    let mostrarTop1=''
     
-    
-    console.log("soy el lenght: ",documentos.length);
-
     //console.log("asi se llega al autor: ", documentos[1].pista[0].autor)
-    for(let i=1 ; i<documentos.length;i++){
+    for(let i=0; i<documentos.length;i++){
         let autorAContar=documentos[i].pista[0].autor
         documentos[i].pista[0].totalCanciones=+1
         //console.log(i,  documentos[i].pista[0].autor)
@@ -87,30 +81,27 @@ const showTop1=()=>{
                 
             }
             
-        }
-        
+        }    
         totalElementos=documentos[i].pista[0].totalCanciones
-        
-
-        console.log("De", autorAContar," hay: ",totalElementos );
-        
+            
         if(totalElementos>=max){
-            top1="El Autor con mas canciones es:" + documentos[i].pista[0].autor
+            top1=documentos[i].pista[0].autor
+            mostrarTop1=`<div class="documentsMax">
+            <p>Top 1 mas canciones</p>
+            <h2>${top1}</h2>
+            <h3>con ${documentos[i].pista[0].totalCanciones} cancion/es</h3>
+            </div>`
             max=totalElementos
-            console.log("soy la lista de pistas",totalPistas );
+            
         }
+
+        
         count=0
     }
-    console.log(top1);
-    console.log(documentos);
+    consultaShowTop1.innerHTML=mostrarTop1
     totalPistas=[]
 
 }
-
-
-
-
-
 
 const max1year =()=>{
     let olderOneYear= document.getElementById('olderOneYear')
@@ -119,9 +110,10 @@ const max1year =()=>{
 
     for(let y of documentos){
         let resultado=2023-y.pista[0].year
-        console.log(y.pista[0].year)
         if(resultado>1){
-            div+=`<p class="parrafos">El titulo ${y.pista[0].tittle} del Autor ${y.pista[0].autor}, cuenta con mas de un año de antiguedad ${resultado} años</p>`
+            div+=`
+            <h1>Titulos con mas de un año</h1>
+            <li class="parrafos">El titulo ${y.pista[0].tittle} del Autor ${y.pista[0].autor}, cuenta con mas de un año de antiguedad ${resultado} años</li>`
         }
     }
     olderOneYear.innerHTML=div

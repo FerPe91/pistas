@@ -19,50 +19,71 @@
         <div>
             <h1>MUSIC-BOOK</h1>
         </div>
+
     </nav>
     
-    <form action="">
-        <label>Autor:</label>
-        <input id="autor" type="text">
-
-        <label>Tittle:</label>
-        <input id="tittle" type="text">
-
-        <label>Content:</label>
-        <input id="content" type="text">
-
-        <label>Year:</label>
-        <input id="year" type="text">
+    
+    <div class="container">
         
-        <button type="button" id="btnAdd">ADD</button>
-    </form>
-
-    <div>
-        <button id="btnTopOne">TOP 1</button>
-        <button id="btnOldYear"> > 1 YEAR</button>
-
-        <label>Search Content:</label>
-        <input type="text" id=searchContent">
-
-        <button id="btn" id="newer">Newer</button>
-        <button id="btn" id="older">Older</button>
-
-        <button id="btn">Trending Topics</button>
-    </div>
-
-    <div>
-        <div id="info">
-        </div>
-
-        <div>
-            <p id="documentsMax"></p>
-            <div id="olderOneYear">
-
+        <div class="bloqueIzquierdo">
+            
+            
+            <form action="">
+                <label>Autor:</label>
+                <input id="autor" type="text">
+        
+                <label>Tittle:</label>
+                <input id="tittle" type="text">
+        
+                <label>Content:</label>
+                <input id="content" type="text">
+        
+                <label>Year:</label>
+                <input id="year" type="text">
+                
+                <button type="button" id="btnAdd">ADD</button>
+            </form>
+            <div>
+                <button id="btnTopOne">TOP 1</button>
+                <button id="btnOldYear"> > 1 YEAR</button>
+    
+                <label>Search Content:</label>
+                <input type="text" id=searchContent">
+    
+                <button id="btn" id="newer">Newer</button>
+                <button id="btn" id="older">Older</button>
+    
+                <button id="btn">Trending Topics</button>
             </div>
-            <p></p>
-            <p></p>
+    
+            <div id="info">
+            </div>
+
         </div>
+
+        <div class="bloqueDerecho">
+            <h1>Resultados:</h1>
+            <div>
+                <div>
+                    <div  id="documentsMax">
+        
+        
+                    </div>
+                    <div >
+                        <ul id="olderOneYear">
+        
+                        </ul>
+                    </div>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
+
     
     
 
